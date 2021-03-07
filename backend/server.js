@@ -7,20 +7,25 @@ const db = require('./models')
 const dbConfig = require('./config/db.config')
 const Role = db.role
 
+// this lets us use env variables
+require('dotenv').config()
+
 const PORT = process.env.PORT || 8080
 
 var corsOptions = {
     origin: 'http://localhost:8081',
 }
 
-app.use(cors(corsOptions))
-
 // let's us parse json and urlencoded tpyes
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
 
+app.use(cors(corsOptions))
+
+const uri = process.env.ATLAS_URI
+
 db.mongoose
-    .connect(`mongodb://${dbConfig.HOST}:${dbConfig.PORT}/${dbConfig.DB}`, {
+    .connect(uri, {
         useNewUrlParser: true,
         useUnifiedTopology: true,
     })
@@ -77,3 +82,7 @@ app.get('/', (req, res) => {
 app.listen(PORT, () => {
     console.log(`App is running on port ${PORT}`)
 })
+
+// routes
+require('./routes/auth.routes')(app)
+require('./routes/user.routes')(app)

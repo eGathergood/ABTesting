@@ -1,5 +1,5 @@
 const { eventNames } = require('../models/role.model')
 
 module.exports = {
-    secret: proccess.ENV.SECRET || 'secret',
+    secret: process.env.SECRET || 'secret',
 }
