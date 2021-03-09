@@ -12,6 +12,7 @@ import Profile from "./components/Profile";
 import BoardUser from "./components/BoardUser";
 import BoardModerator from "./components/BoardModerator";
 import BoardAdmin from "./components/BoardAdmin";
+import Task from "./components/Task"
 
 const App = () => {
   const [showModeratorBoard, setShowModeratorBoard] = useState(false);
@@ -63,8 +64,8 @@ const App = () => {
 
           {currentUser && (
             <li className="nav-item">
-              <Link to={"/user"} className="nav-link">
-                User
+              <Link to={"/task"} className="nav-link">
+                Tasks
               </Link>
             </li>
           )}
@@ -109,6 +110,7 @@ const App = () => {
           <Route path="/user" component={BoardUser} />
           <Route path="/mod" component={BoardModerator} />
           <Route path="/admin" component={BoardAdmin} />
+          <Route path="/task" component={Task} />
         </Switch>
       </div>
     </div>

@@ -2,14 +2,7 @@ import React, { useState, useRef } from "react";
 import Form from "react-validation/build/form";
 import Input from "react-validation/build/input";
 import CheckButton from "react-validation/build/button";
-import Button from "@material-ui/core/Button";
-
-import { FormGroup, TextField } from "@material-ui/core";
-
 import { isEmail } from "validator";
-import Card from "@material-ui/core/Card";
-import CardContent from "@material-ui/core/CardContent";
-
 import AuthService from "../services/auth.service";
 import Alert from "@material-ui/lab/Alert";
 
