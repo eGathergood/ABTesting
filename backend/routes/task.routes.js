@@ -12,5 +12,6 @@ module.exports = function (app) {
     app.post('/api/tasks/add', controller.add)
     app.post('/api/tasks/update/:id', controller.update)
     app.get('/api/tasks/', controller.getAll)
+    app.get('/api/tasks/:id', controller.getByID)
     app.delete('/api/tasks/delete/:id', controller.delete)
 }

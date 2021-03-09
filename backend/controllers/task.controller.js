@@ -23,6 +23,13 @@ exports.getAll = (req, res) => {
         .catch((err) => res.status(400).json('Error: ' + err))
 }
 
+// GET /exercises/:ID
+exports.getByID = (req, res) => {
+    Task.findById(req.params.id)
+        .then((task) => res.json(task))
+        .catch((err) => res.status(400).json('Error: ' + err))
+}
+
 // Delete /exercises/:ID
 exports.delete = (req, res) => {
     Task.findOneAndDelete(req.params.id)
