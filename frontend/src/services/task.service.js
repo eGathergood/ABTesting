@@ -6,6 +6,12 @@ const getTasks = () => {
   return axios.get(API_URL + "/");
 };
 
+const deleteTask = (task) => {
+  console.log("Deleting task: " + task.title + "ID: " + task._id);
+  return axios.delete(API_URL + "/delete/" + task._id);
+};
+
 export default {
   getTasks,
+  deleteTask,
 };

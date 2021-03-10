@@ -32,7 +32,7 @@ exports.getByID = (req, res) => {
 
 // Delete /exercises/:ID
 exports.delete = (req, res) => {
-    Task.findOneAndDelete(req.params.id)
+    Task.findByIdAndDelete(req.params.id)
         .then((task) => res.json('Task deleted'))
         .catch((err) => res.status(400).json('Error: ' + err))
 }
