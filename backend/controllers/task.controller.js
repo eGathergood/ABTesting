@@ -42,7 +42,7 @@ exports.update = (req, res) => {
         .then((task) => {
             ;(task.title = req.body.title),
                 (task.description = req.body.description),
-                (task.dueDate = Date.parse(req.body.date))
+                (task.dueDate = Date.parse(req.body.dueDate))
 
             task.save()
                 .then(() => res.json('Task updated!'))

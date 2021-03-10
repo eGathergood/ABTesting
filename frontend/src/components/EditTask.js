@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import TaskService from "../services/task.service";
 import { formatISO } from "date-fns";
+import axios from "axios";
 
 import { Pencil } from "react-bootstrap-icons";
 import { Button } from "react-bootstrap";
@@ -20,6 +21,7 @@ function EditTask(taskId) {
   const [title, setTitle] = useState();
   const [description, setDescription] = useState();
   const [date, setDate] = useState(new Date());
+  const [currentTaskId, setCurrentTaskId] = useState();
 
   const handleClose = () => setShow(false);
 
@@ -41,10 +43,11 @@ function EditTask(taskId) {
 
   useEffect(() => {
     setTaskData(taskId);
+    setCurrentTaskId(data._id);
     setTitle(data.title);
     setDescription(data.description);
     setDate(data.dueDate);
-  }, [taskId, data.title, data.description, data.dueDate]);
+  }, [taskId, data.title, data.description, data.dueDate, data._id]);
 
   if (error) {
     return <h1>An error has occured</h1>;
@@ -54,13 +57,15 @@ function EditTask(taskId) {
   //   }
 
   const taskBody = {
-    dueDate: new Date(date),
-    description: description,
     title: title,
+    description: description,
+    dueDate: new Date(date),
   };
 
   const tester = () => {
-    console.log(taskBody);
+    axios
+      .post("http://localhost:8080/api/tasks/update/" + currentTaskId, taskBody)
+      .then((res) => console.log(res.data));
   };
 
   const updateTask = () => {
