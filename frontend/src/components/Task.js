@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import TaskService from "../services/task.service";
+import EditTask from "../components/EditTask";
 import { parseISO } from "date-fns";
-import { Pencil } from "react-bootstrap-icons";
 import { Trash } from "react-bootstrap-icons";
 import taskService from "../services/task.service";
 
@@ -55,7 +55,7 @@ const Task = () => {
                 <td>{d.description}</td>
                 <td> {parseISO(d.dueDate).toDateString()}</td>
                 <td>
-                  <Pencil onClick={() => console.log(d.title)} />
+                  <EditTask taskId={d._id} />
                 </td>
                 <td>
                   <Trash onClick={() => taskService.deleteTask(d)} />

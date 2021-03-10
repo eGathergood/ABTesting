@@ -12,7 +12,8 @@ import Profile from "./components/Profile";
 import BoardUser from "./components/BoardUser";
 import BoardModerator from "./components/BoardModerator";
 import BoardAdmin from "./components/BoardAdmin";
-import Task from "./components/Task"
+import Task from "./components/Task";
+import EditTask from "./components/EditTask";
 
 const App = () => {
   const [showModeratorBoard, setShowModeratorBoard] = useState(false);
@@ -110,7 +111,8 @@ const App = () => {
           <Route path="/user" component={BoardUser} />
           <Route path="/mod" component={BoardModerator} />
           <Route path="/admin" component={BoardAdmin} />
-          <Route path="/task" component={Task} />
+          <Route path="/task" component={Task} />{" "}
+          <Route path="/edittask" component={EditTask} />
         </Switch>
       </div>
     </div>
