@@ -3,7 +3,6 @@ import TaskService from "../services/task.service";
 import EditTask from "../components/EditTask";
 import { parseISO } from "date-fns";
 import { Trash } from "react-bootstrap-icons";
-import { Button } from "react-bootstrap";
 import taskService from "../services/task.service";
 import metricService from "../services/metric.service";
 import CreateTask from "../components/CreateTask";

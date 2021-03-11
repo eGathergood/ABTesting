@@ -55,16 +55,6 @@ function initialiseRoles() {
             })
 
             new Role({
-                name: 'moderator',
-            }).save((err) => {
-                if (err) {
-                    console.log('error' + err)
-                }
-
-                console.log("Added 'moderator' to roles collection")
-            })
-
-            new Role({
                 name: 'admin',
             }).save((err) => {
                 if (err) {
@@ -137,6 +127,10 @@ app.get('/', (req, res) => {
 app.listen(PORT, () => {
     console.log(`App is running on port ${PORT}`)
 })
+
+if (process.env.NODE_ENV === 'production') {
+    app.use(express.static('frontend/build'))
+}
 
 // routes
 require('./routes/auth.routes')(app)

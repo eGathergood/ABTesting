@@ -10,6 +10,6 @@ db.role = require('./role.model')
 db.task = require('./task.model')
 db.metric = require('./metric.model')
 
-db.ROLES = ['user', 'admin', 'moderator']
+db.ROLES = ['user', 'admin']
 
 module.exports = db
