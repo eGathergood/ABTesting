@@ -68,6 +68,7 @@ function initialiseRoles() {
     })
 }
 
+
 function initialiseMetrics() {
     Metric.estimatedDocumentCount((err, count) => {
         if (!err && count === 0) {
