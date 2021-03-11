@@ -23,7 +23,7 @@ app.use(bodyParser.urlencoded({ extended: true }))
 
 app.use(cors(corsOptions))
 
-const uri = process.env.ATLAS_URI
+const uri = process.env.MONGODB_URI
 
 db.mongoose
     .connect(uri, {
