@@ -22,7 +22,7 @@ app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
 
 app.use(cors(corsOptions))
-
+app.use(express.static(path.join(__dirname, 'client', 'build')))
 const uri = process.env.MONGODB_URI
 
 db.mongoose
@@ -124,13 +124,17 @@ app.get('/', (req, res) => {
     res.json({ message: 'Example route.' })
 })
 
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, 'client', 'build', 'index.html'))
+})
+
 app.listen(PORT, () => {
     console.log(`App is running on port ${PORT}`)
 })
 
-if (process.env.NODE_ENV === 'production') {
-    app.use(express.static('frontend/build'))
-}
+// if (process.env.NODE_ENV === 'production') {
+//     app.use(express.static('frontend/build'))
+// }
 
 // routes
 require('./routes/auth.routes')(app)
