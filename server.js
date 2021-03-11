@@ -3,8 +3,8 @@ const bodyParser = require('body-parser')
 const cors = require('cors')
 
 const app = express()
-const db = require('./models')
-const dbConfig = require('./config/db.config')
+const db = require('./backend/models')
+const dbConfig = require('./backend/config/db.config')
 const Role = db.role
 const Metric = db.metric
 
@@ -133,7 +133,7 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 // routes
-require('./routes/auth.routes')(app)
-require('./routes/user.routes')(app)
-require('./routes/task.routes')(app)
-require('./routes/metric.routes')(app)
+require('./backend/routes/auth.routes')(app)
+require('./backend/routes/user.routes')(app)
+require('./backend/routes/task.routes')(app)
+require('./backend/routes/metric.routes')(app)
