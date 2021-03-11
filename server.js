@@ -68,7 +68,6 @@ function initialiseRoles() {
     })
 }
 
-
 function initialiseMetrics() {
     Metric.estimatedDocumentCount((err, count) => {
         if (!err && count === 0) {
@@ -134,9 +133,9 @@ app.listen(PORT, () => {
     console.log(`App is running on port ${PORT}`)
 })
 
-// if (process.env.NODE_ENV === 'production') {
-//     app.use(express.static('frontend/build'))
-// }
+if (process.env.NODE_ENV === 'production') {
+    app.use(express.static('frontend/build'))
+}
 
 // routes
 require('./routes/auth.routes')(app)
