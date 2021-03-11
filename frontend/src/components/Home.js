@@ -24,7 +24,8 @@ const Home = () => {
   return (
     <div className="container">
       <header className="jumbotron">
-        <h3>{content}</h3>
+        <h3>Task Tracker</h3>
+        <p>This application is used to track and manage tasks.</p>
       </header>
     </div>
   );

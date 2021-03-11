@@ -11,4 +11,5 @@ module.exports = function (app) {
 
     app.get('/api/metrics/', controller.getAll)
     app.post('/api/metrics/registerClick/:id', controller.registerClick)
+    app.post('/api/metrics/resetClicks/:id', controller.resetClicks)
 }

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import TaskService from "../services/task.service";
 import axios from "axios";
 import taskService from "../services/task.service";
+import metricService from "../services/metric.service";
 
 import { Pencil } from "react-bootstrap-icons";
 import { Button } from "react-bootstrap";
@@ -49,6 +50,8 @@ function EditTask(props) {
       await TaskService.getById(taskData)
         .then((res) => {
           setData(res.data);
+          metricService.registerClick("604a6747398d790a3f901863");
+
           setShow(true);
         })
         .catch((error) => {
@@ -72,6 +75,7 @@ function EditTask(props) {
 
   const handleDelete = (task) => {
     taskService.deleteTask(task);
+    metricService.registerClick("604a6747398d790a3f901863");
     props.taskUpdated();
     handleClose();
   };

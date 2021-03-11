@@ -3,6 +3,8 @@ import { Button } from "react-bootstrap";
 import { Modal } from "react-bootstrap";
 import { Form } from "react-bootstrap";
 
+import metricService from "../services/metric.service";
+
 import axios from "axios";
 
 import DatePicker from "react-datepicker";
@@ -31,6 +33,7 @@ function CreateTask(props) {
         .then((res) => {
           console.log(res.data);
           props.taskUpdated();
+          metricService.registerClick("604a6747398d790a3f901862");
           setShow(false);
         })
         .catch((error) => {

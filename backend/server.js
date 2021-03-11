@@ -80,6 +80,7 @@ function initialiseRoles() {
 function initialiseMetrics() {
     Metric.estimatedDocumentCount((err, count) => {
         if (!err && count === 0) {
+            // taskViewDelete Metric
             new Metric({
                 name: 'taskViewDelete',
                 clicks: 0,
@@ -89,6 +90,41 @@ function initialiseMetrics() {
                 }
 
                 console.log("Added 'taskViewDelete' to metrics collection")
+            })
+            // create task metric
+            new Metric({
+                name: 'createTask',
+                clicks: 0,
+            }).save((err) => {
+                if (err) {
+                    console.log('error' + err)
+                }
+
+                console.log("Added 'create task' to metrics collection")
+            })
+
+            //edit task metric
+            new Metric({
+                name: 'editTask',
+                clicks: 0,
+            }).save((err) => {
+                if (err) {
+                    console.log('error' + err)
+                }
+
+                console.log("Added 'editTask' to metrics collection")
+            })
+
+            // editViewDelete metric
+            new Metric({
+                name: 'editViewDelete',
+                clicks: 0,
+            }).save((err) => {
+                if (err) {
+                    console.log('error' + err)
+                }
+
+                console.log("Added 'editViewDelete' to metrics collection")
             })
         }
     })

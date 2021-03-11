@@ -9,6 +9,21 @@ exports.getAll = (req, res) => {
         .catch((err) => res.status(400).json('Error: ' + err))
 }
 
+//resets clicks to 0
+exports.resetClicks = (req, res) => {
+    Metric.findById(req.params.id)
+        .then((metric) => {
+            metric.clicks = 0
+
+            metric
+                .save()
+                .then(() => res.json('Task updated!'))
+                .catch((err) => res.status(400).json('Error: ' + err))
+        })
+        .catch((err) => res.status(400).json('Error: ' + err))
+}
+
+// adds a "click"
 exports.registerClick = (req, res) => {
     Metric.findById(req.params.id)
         .then((metric) => {

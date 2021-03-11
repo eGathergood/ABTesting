@@ -43,10 +43,8 @@ const Task = () => {
 
   const deleteTask = (task) => {
     taskService.deleteTask(task);
-
     console.log(task);
-    metricService.registerClick("604a3901f853c400c64502c0");
-
+    metricService.registerClick("604a6747398d790a3f901861");
     taskUpdated();
   };
 
