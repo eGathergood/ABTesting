@@ -7,7 +7,7 @@ exports.add = (req, res) => {
     const newTask = new Task({
         title: req.body.title,
         description: req.body.description,
-        dueDate: Date.parse(req.body.date),
+        dueDate: Date.parse(req.body.dueDate),
     })
 
     newTask

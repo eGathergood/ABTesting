@@ -1,37 +1,33 @@
-import React, { useState, useEffect } from "react";
-import TaskService from "../services/task.service";
-import axios from "axios";
-import taskService from "../services/task.service";
-
-import { Pencil } from "react-bootstrap-icons";
+import React, { useState } from "react";
 import { Button } from "react-bootstrap";
 import { Modal } from "react-bootstrap";
 import { Form } from "react-bootstrap";
 
+import axios from "axios";
+
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
-function EditTask(props) {
-  const [taskData, setTaskData] = useState([]);
-  const [data, setData] = useState([]);
-  const [error, setError] = useState(false);
+function CreateTask(props) {
   const [show, setShow] = useState(false);
-  const [title, setTitle] = useState();
-  const [description, setDescription] = useState();
+  const [error, setError] = useState(false);
+
+  const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
   const [date, setDate] = useState(new Date());
-  const [currentTaskId, setCurrentTaskId] = useState();
+
+  const handleShow = () => {
+    setShow(true);
+  };
 
   const handleClose = () => {
     setShow(false);
   };
 
-  const handleUpdate = () => {
-    async function update() {
+  const handleCreate = () => {
+    async function create() {
       await axios
-        .post(
-          "http://localhost:8080/api/tasks/update/" + currentTaskId,
-          taskBody
-        )
+        .post("http://localhost:8080/api/tasks/add", taskBody)
         .then((res) => {
           console.log(res.data);
           props.taskUpdated();
@@ -41,46 +37,7 @@ function EditTask(props) {
           setError(true);
         });
     }
-    update();
-  };
-
-  const handleShow = () => {
-    async function fetchData() {
-      await TaskService.getById(taskData)
-        .then((res) => {
-          setData(res.data);
-          setShow(true);
-        })
-        .catch((error) => {
-          setError(true);
-        });
-    }
-    fetchData();
-  };
-
-  useEffect(() => {
-    setTaskData(props.taskId);
-    setCurrentTaskId(data._id);
-    setTitle(data.title);
-    setDescription(data.description);
-    setDate(data.dueDate);
-  }, [props.taskId, data.title, data.description, data.dueDate, data._id]);
-
-  if (error) {
-    return <h1>An error has occured</h1>;
-  }
-
-  const handleDelete = (task) => {
-    taskService.deleteTask(task);
-    props.taskUpdated();
-    handleClose();
-  };
-
-  const deleteTaskBody = {
-    _id: currentTaskId,
-    title: title,
-    description: description,
-    dueDate: new Date(date),
+    create();
   };
 
   const taskBody = {
@@ -91,7 +48,8 @@ function EditTask(props) {
 
   return (
     <>
-      <Pencil onClick={handleShow}>Launch demo modal</Pencil>
+      <Button onClick={handleShow}>Create Task</Button>
+
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
           <Modal.Title>Edit task</Modal.Title>
@@ -125,14 +83,11 @@ function EditTask(props) {
           </Form>
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="danger" onClick={() => handleDelete(deleteTaskBody)}>
-            DELETE
-          </Button>
           <Button variant="secondary" onClick={handleClose}>
             Close
           </Button>
-          <Button variant="primary" onClick={() => handleUpdate()}>
-            Save Changes
+          <Button variant="primary" onClick={() => handleCreate()}>
+            Create Task
           </Button>
         </Modal.Footer>
       </Modal>
@@ -140,4 +95,4 @@ function EditTask(props) {
   );
 }
 
-export default EditTask;
+export default CreateTask;

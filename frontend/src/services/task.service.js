@@ -20,9 +20,11 @@ const deleteTask = (task) => {
   return axios.delete(API_URL + "/delete/" + task._id);
 };
 
-export default {
+const taskService = {
   getTasks,
   deleteTask,
   getById,
   updateTask,
 };
+
+export default taskService;
