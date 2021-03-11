@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_URL = process.env.API_URL + "/api/metrics";
+const API_URL = "/api/metrics";
 
 const registerClick = (metricId) => {
   console.log("a click has been logged");
