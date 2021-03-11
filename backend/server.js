@@ -6,6 +6,7 @@ const app = express()
 const db = require('./models')
 const dbConfig = require('./config/db.config')
 const Role = db.role
+const Metric = db.metric
 
 // this lets us use env variables
 require('dotenv').config()
@@ -31,7 +32,8 @@ db.mongoose
     })
     .then(() => {
         console.log('Successfully connected to MongoDB')
-        initial()
+        initialiseRoles()
+        initialiseMetrics()
     })
     .catch((err) => {
         console.error('Connection error', err)
@@ -39,7 +41,7 @@ db.mongoose
     })
 
 // This function initalises roles if the rows collection is empty
-function initial() {
+function initialiseRoles() {
     Role.estimatedDocumentCount((err, count) => {
         if (!err && count === 0) {
             new Role({
@@ -75,6 +77,23 @@ function initial() {
     })
 }
 
+function initialiseMetrics() {
+    Metric.estimatedDocumentCount((err, count) => {
+        if (!err && count === 0) {
+            new Metric({
+                name: 'taskViewDelete',
+                clicks: 0,
+            }).save((err) => {
+                if (err) {
+                    console.log('error' + err)
+                }
+
+                console.log("Added 'taskViewDelete' to metrics collection")
+            })
+        }
+    })
+}
+
 app.get('/', (req, res) => {
     res.json({ message: 'Example route.' })
 })
@@ -87,3 +106,4 @@ app.listen(PORT, () => {
 require('./routes/auth.routes')(app)
 require('./routes/user.routes')(app)
 require('./routes/task.routes')(app)
+require('./routes/metric.routes')(app)
