@@ -29,10 +29,7 @@ function EditTask(props) {
   const handleUpdate = () => {
     async function update() {
       await axios
-        .post(
-          "http://localhost:8080/api/tasks/update/" + currentTaskId,
-          taskBody
-        )
+        .post("/api/tasks/update/" + currentTaskId, taskBody)
         .then((res) => {
           console.log(res.data);
           props.taskUpdated();

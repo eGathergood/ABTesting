@@ -29,7 +29,7 @@ function CreateTask(props) {
   const handleCreate = () => {
     async function create() {
       await axios
-        .post("http://localhost:8080/api/tasks/add", taskBody)
+        .post("/api/tasks/add", taskBody)
         .then((res) => {
           console.log(res.data);
           props.taskUpdated();
