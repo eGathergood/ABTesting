@@ -26,9 +26,9 @@ app.use(cors(corsOptions))
 
 const uri = process.env.MONGODB_URI
 
-// if (process.env.NODE_ENV === 'production') {
-//     app.use(express.static('client/build'))
-// }
+if (process.env.NODE_ENV === 'production') {
+    app.use(express.static('client/build'))
+}
 
 db.mongoose
     .connect(uri, {
@@ -129,11 +129,10 @@ app.get('/', (req, res) => {
     res.json({ message: 'Example route.' })
 })
 
-
-app.use(express.static(path.join(__dirname, 'client', 'build')))
-app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, 'client', 'build'))
-})
+// app.use(express.static(path.join(__dirname, 'client', 'build')))
+// app.get('*', (req, res) => {
+//     res.sendFile(path.join(__dirname, 'client', 'build'))
+// })
 
 app.listen(PORT, () => {
     console.log(`App is running on port ${PORT}`)
