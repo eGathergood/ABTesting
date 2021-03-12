@@ -24,7 +24,12 @@ app.use(bodyParser.urlencoded({ extended: true }))
 
 app.use(cors(corsOptions))
 app.use(express.static(path.join(__dirname, 'client', 'build')))
+
 const uri = process.env.MONGODB_URI
+
+if (process.env.NODE_ENV === 'production') {
+    app.use(express.static('frontend/build'))
+}
 
 db.mongoose
     .connect(uri, {
@@ -132,10 +137,6 @@ app.get('*', (req, res) => {
 app.listen(PORT, () => {
     console.log(`App is running on port ${PORT}`)
 })
-
-if (process.env.NODE_ENV === 'production') {
-    app.use(express.static('frontend/build'))
-}
 
 // routes
 require('./routes/auth.routes')(app)
