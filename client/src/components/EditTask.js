@@ -72,7 +72,7 @@ function EditTask(props) {
 
   const handleDelete = (task) => {
     taskService.deleteTask(task);
-    metricService.registerClick("604a6747398d790a3f901863");
+    metricService.registerClick("604a6747398d790a3f901864");
     props.taskUpdated();
     handleClose();
   };

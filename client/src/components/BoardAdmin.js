@@ -56,13 +56,28 @@ const BoardAdmin = () => {
     <>
       <div className="container">
         <header className="jumbotron">
-          <h3>{content}</h3>
-          {data.map((d) => (
-            <p>
-              {d.name} has been clicked {d.clicks} times{" "}
-              <Button onClick={() => resetClicks(d._id)}>Reset Counter</Button>
-            </p>
-          ))}
+          <table className="table">
+            <thead className="thead-light">
+              <tr>
+                <th>Title</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              {data.map((d) => (
+                <tr>
+                  <td>
+                    {d.name} has been clicked {d.clicks} times
+                  </td>
+                  <td>
+                    <Button onClick={() => resetClicks(d._id)}>
+                      Reset Counter
+                    </Button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </header>
       </div>
     </>
