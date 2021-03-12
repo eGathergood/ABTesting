@@ -28,7 +28,7 @@ app.use(express.static(path.join(__dirname, 'client', 'build')))
 const uri = process.env.MONGODB_URI
 
 if (process.env.NODE_ENV === 'production') {
-    app.use(express.static('frontend/build'))
+    app.use(express.static('client/build'))
 }
 
 db.mongoose
